@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::phase('/', 'BlogController@HomePage');
-Route::phase('/about', 'BlogController@AboutPage');
-Route::phase('/contact', 'BlogController@ContactPage');
-Route::phase('/posts/{article}', 'BlogController@SingleArticle');
+Route::phase('/', [BlogController::class, 'HomePage']);
+Route::phase('/about', [BlogController::class, 'AboutPage']);
+Route::phase('/contact', [BlogController::class, 'ContactPage']);
+Route::phase('/posts/{article}', [BlogController::class, 'SingleArticle']);

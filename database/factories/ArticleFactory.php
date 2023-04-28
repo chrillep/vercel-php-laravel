@@ -1,27 +1,29 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Article;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * Since we are faking article data instead of having a database
- * setup, we will set the 'seed' here so that we always generate
- * the same set of fake articles
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
  */
-$factory->faker->seed(1234);
+class ArticleFactory extends Factory
+{
+    protected $model = Article::class;
 
-$factory->define(Article::class, function (Faker $faker) {
-    $title = $faker->sentence(3);
-    $content = $faker->realText($faker->numberBetween(500, 4000));
+    public function definition(): array
+    {
+        $title = fake()->sentence(3);
+        $content = fake()->realText(fake()->numberBetween(500, 4000));
 
-    return [
-        'title' => $title,
-        'slug' => Str::slug($title),
-        'excerpt' => Str::limit($content, 250),
-        'content' => $content,
-        'created_at' => $faker->dateTimeBetween('-2 years', 'now'),
-    ];
-});
+        return [
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'excerpt' => Str::limit($content, 250),
+            'content' => $content,
+            'created_at' => fake()->dateTimeBetween('-2 years', 'now'),
+        ];
+    }
+}

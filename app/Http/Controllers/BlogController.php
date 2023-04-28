@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Phased\Routing\Facades\Phase;
 use Phased\State\Facades\Vuex;
 
@@ -13,7 +17,6 @@ class BlogController extends Controller
         // Pull the fake articles from our fake helper
         // generator
         $fakeArticles = $this->getFakerArticles();
-
         // Add them to our vuex store
         // $store.state.articles.recent
         $fakeArticles->toVuex('articles', 'recents');
@@ -61,13 +64,13 @@ class BlogController extends Controller
     }
 
     /**
-     * not a view
+     * @return Collection|Model
      */
     private function getFakerArticles()
     {
         // Generate a collection of fake blog articles...
         // Our faker has a common seed, so this will always
         // generate the same articles
-        return factory(Article::class, 10)->make();
+        return Article::factory(10)->make();
     }
 }
