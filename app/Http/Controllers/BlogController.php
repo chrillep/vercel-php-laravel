@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Http\Request;
 use Phased\Routing\Facades\Phase;
 use Phased\State\Facades\Vuex;
 
@@ -44,7 +43,7 @@ class BlogController extends Controller
         $faker = \Faker\Factory::create();
         $faker->seed(1234);
         Vuex::state([
-            'bio' => $faker->paragraphs(3, false)
+            'bio' => $faker->paragraphs(3, false),
         ]);
 
         return Phase::view();
@@ -55,11 +54,12 @@ class BlogController extends Controller
         $faker = \Faker\Factory::create();
         $faker->seed(4321);
         Vuex::state([
-            'contact' => $faker->paragraphs(3, false)
+            'contact' => $faker->paragraphs(3, false),
         ]);
 
         return Phase::view();
     }
+
     /**
      * not a view
      */
