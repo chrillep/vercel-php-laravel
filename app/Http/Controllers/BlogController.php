@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Models\Article;
 use Phased\Routing\Facades\Phase;
 use Phased\State\Facades\Vuex;
 
