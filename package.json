@@ -23,7 +23,7 @@
         "@j0nz/nifty-layouts": "^1.0.0",
         "@phased/phase": "^0.4.0",
         "dayjs": "^1.8.28",
-        "tailwindcss": "^1.4.6",
+        "tailwindcss": "^3.0.0",
         "vue": "^2.6.11",
         "vue-router": "^3.3.4",
         "vue-server-renderer": "^2.6.11",
