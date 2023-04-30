@@ -16,12 +16,6 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/s', [BlogController::class, 'HomePage']);
-Route::get('/sabout', [BlogController::class, 'AboutPage']);
-Route::get('/scontact', [BlogController::class, 'ContactPage']);
-Route::get('s/posts/{article}', [BlogController::class, 'SingleArticle']);
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
