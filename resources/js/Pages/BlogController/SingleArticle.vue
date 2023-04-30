@@ -14,13 +14,3 @@
   </p>
 </div>
 </template>
-
-<script>
-import dayJs from 'dayjs'
-
-export default {
-    methods: {
-        dayJs
-    }
-};
-</script>

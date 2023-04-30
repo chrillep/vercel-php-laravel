@@ -7,12 +7,11 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Phased\Routing\Facades\Phase;
-use Phased\State\Facades\Vuex;
+use Inertia\Inertia;
 
 class BlogController extends Controller
 {
-    public function HomePage()
+    public function HomePageOld()
     {
         // Pull the fake articles from our fake helper
         // generator
@@ -23,6 +22,26 @@ class BlogController extends Controller
 
         // return the Phase view
         return Phase::view();
+    }
+
+    public function HomePage()
+    {
+
+        // Pull the fake articles from our fake helper
+        // generator
+        $fakeArticles = $this->getFakerArticles();
+        // Add them to our vuex store
+        // $store.state.articles.recent
+        //        $fakeArticles->toVuex('articles', 'recents');
+
+        return Inertia::render('BlogController/HomePage', [
+            'event' => $fakeArticles->only(
+                'id',
+                'title',
+                'start_date',
+                'description'
+            ),
+        ]);
     }
 
     public function SingleArticle($article)

@@ -19,21 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        /**
-         * These directories are required for laravel
-         * to operate properly. Under normal circumstances this isn't required
-         * however if deploying to a serverless platform such as Vercel, its
-         * much easier to ensure these directories exist on every request as
-         * the directory must be created in `/tmp` and _not_ in your project
-         * directly
-         */
-        $view = config('view.compiled');
-        $ssr = config('ssr.node.temp_path');
-        foreach ([$view, $ssr] as $path) {
-            if (! is_dir($path)) {
-                mkdir($path, 0755, true);
-            }
-        }
 
         if (env('VERCEL_DEMO_MODE')) {
             /**

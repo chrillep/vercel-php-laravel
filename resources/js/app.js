@@ -1,48 +1,23 @@
-/**
- * Here we will load any bootstrapping code
- * required by the rest of the app
- */
-import './bootstrap'
+import './bootstrap';
+import '../css/app.css';
 
-/**
- * Here we will import the base parts of the app
- * required for everything to operate properly
- */
-import Vue from "vue";
+import { createApp, h } from 'vue';
+import { createInertiaApp } from '@inertiajs/vue3';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-/**
- * This is our phase-enhanced vuex store.
- */
-import { store } from "./store";
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
-/**
- * Here is our Vue Router. This is a standard vue router,
- * with a phase provided 'routes' configuration
- */
-import { router } from "./router";
-
-/**
- * Here is our NiftyLayouts config.
- */
-import { layout } from './layouts'
-
-/**
- * Instead of mounting the app directly, we will export it now.
- * This allows phase to control enabling/disabling server side
- * rendering
- */
-export default new Vue({
-  store,
-  router,
-  layout,
-  functional: true,
-  render: h => h('NiftyLayout', {
-    attrs: {
-      id: 'app',
-      layoutTransitionName: "layout-transition",
-      layoutTransitionMode:"out-in",
-      routeTransitionName:"route-transition",
-      routeTransitionMode:"out-in"
-    }
-  }),
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    setup({ el, App, props, plugin }) {
+        return createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .use(ZiggyVue, Ziggy)
+            .mount(el);
+    },
+    progress: {
+        color: '#4B5563',
+    },
 });
