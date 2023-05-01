@@ -1,27 +1,38 @@
+<script setup>
+import { Link, Head } from '@inertiajs/vue3'
+import MainLayout from "@/Layouts/MainLayout.vue";
+
+defineProps({ articles: Object })
+</script>
+
 <template>
-    <div>
-        <ul>
-            <li v-for="article in $store.state.articles.recents" :key="article.slug" class="p-8">
+    <MainLayout>
+        <Head title="Main" />
+
+        <div>
+            <ul>
+                <li v-for="article in articles.recents" :key="article.slug" class="p-8">
                 <span class="text-sm font-bold uppercase">
-                    {{ dayJs(article.created_at).format('MMMM YYYY') }}
+                    {{ new Date(article.created_at).toLocaleString() }}
                 </span>
-                <h2>
-                    <RouterLink
-                        :to="{ name: 'BlogController@SingleArticle', params: { article: article.slug }}"
-                        class="text-2xl font-bold hover:underline cursor-pointer pt-2 pb-4">
-                        {{ article.title }}
-                    </RouterLink>
-                </h2>
-                <p>{{ article.excerpt }}</p>
-                <div class="pt-4">
-                    <RouterLink
-                        :to="{ name: 'BlogController@SingleArticle', params: { article: article.slug }}"
-                        class="hover:underline cursor-pointer text-red-600">
-                        Read
-                    </RouterLink>
-                </div>
-            </li>
-        </ul>
-    </div>
+                    <h2>
+                        <Link
+                            :href="route('posts.show', { article: article.slug })"
+                            class="text-2xl font-bold hover:underline cursor-pointer pt-2 pb-4">
+                            {{ article.title }}
+                        </Link>
+                    </h2>
+                    <p>{{ article.excerpt }}</p>
+                    <div class="pt-4">
+                        <Link
+                            :href="route('posts.show', { article: article.slug })"
+                            class="hover:underline cursor-pointer text-red-600">
+                            Read
+                        </Link>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </MainLayout>
 </template>
 

@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +18,11 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/home', [BlogController::class, 'HomePage'])->name('home');
+Route::get('/about', [BlogController::class, 'AboutPage'])->name('about');
+Route::get('/contact', [BlogController::class, 'ContactPage'])->name('contact');
+Route::get('/posts/{article}', [BlogController::class, 'SingleArticle'])->name('posts.show');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

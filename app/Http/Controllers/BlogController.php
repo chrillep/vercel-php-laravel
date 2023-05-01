@@ -11,19 +11,6 @@ use Inertia\Inertia;
 
 class BlogController extends Controller
 {
-    public function HomePageOld()
-    {
-        // Pull the fake articles from our fake helper
-        // generator
-        $fakeArticles = $this->getFakerArticles();
-        // Add them to our vuex store
-        // $store.state.articles.recent
-        $fakeArticles->toVuex('articles', 'recents');
-
-        // return the Phase view
-        return Phase::view();
-    }
-
     public function HomePage()
     {
 
@@ -35,12 +22,7 @@ class BlogController extends Controller
         //        $fakeArticles->toVuex('articles', 'recents');
 
         return Inertia::render('BlogController/HomePage', [
-            'event' => $fakeArticles->only(
-                'id',
-                'title',
-                'start_date',
-                'description'
-            ),
+            'articles.recents' => $fakeArticles,
         ]);
     }
 
@@ -54,32 +36,29 @@ class BlogController extends Controller
 
         // Set it as the active article
         // $store.state.articles.active
-        $fakeArticle->toVuex('articles', 'active');
-
-        // return the Phase view
-        return Phase::view();
+        return Inertia::render('BlogController/SingleArticle', [
+            'articles.active' => $fakeArticle,
+        ]);
     }
 
     public function AboutPage()
     {
         $faker = \Faker\Factory::create();
         $faker->seed(1234);
-        Vuex::state([
+
+        return Inertia::render('BlogController/AboutPage', [
             'bio' => $faker->paragraphs(3, false),
         ]);
-
-        return Phase::view();
     }
 
     public function ContactPage()
     {
         $faker = \Faker\Factory::create();
         $faker->seed(4321);
-        Vuex::state([
+
+        return Inertia::render('BlogController/ContactPage', [
             'contact' => $faker->paragraphs(3, false),
         ]);
-
-        return Phase::view();
     }
 
     /**

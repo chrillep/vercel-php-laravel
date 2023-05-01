@@ -1,16 +1,27 @@
+<script setup>
+import { Head } from '@inertiajs/vue3'
+import MainLayout from "@/Layouts/MainLayout.vue";
+
+defineProps({ articles: Object })
+</script>
 <template>
-<div>
-  <h2 class="text-4xl font-bold text-center mb-8">{{ $store.state.articles.active.title }}</h2>
-  <p>{{ $store.state.articles.active.content }}</p>
+    <MainLayout>
+        <Head><title>{{ articles.active.title }}</title></Head>
 
-  <hr class="my-8 border-red-500">
+        <div class="p-8">
+            <h2 class="text-4xl font-bold text-center mb-8">{{ articles.active.title }}</h2>
+            <p>{{ articles.active.content }}</p>
 
-  <p>
-    <span class="italic text-gray-600 font-hairline">
-      Published {{ dayJs($store.state.articles.active.created_at).format('d MMM YYYY') }}
-    </span>
-    <span class="px-2">—</span>
-    <span class="hover:underline">{{ $store.state.author }}</span>
-  </p>
-</div>
+            <hr class="my-8 border-red-500">
+
+            <p>
+                <span class="italic text-gray-600 font-hairline">
+                    {{ new Date(articles.active.created_at).toLocaleString() }}
+                </span>
+                <span class="px-2">—</span>
+                <span class="hover:underline">John Doe</span>
+            </p>
+        </div>
+    </MainLayout>
 </template>
+

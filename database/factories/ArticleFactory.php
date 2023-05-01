@@ -15,6 +15,7 @@ class ArticleFactory extends Factory
 
     public function definition(): array
     {
+        fake()->seed(1234);
         $title = fake()->sentence(3);
         $content = fake()->realText(fake()->numberBetween(500, 4000));
 
