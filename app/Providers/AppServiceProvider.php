@@ -19,9 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (App::environment('production')) {
-            \URL::forceScheme('https');
-        }
         /**
          * These directories are required for laravel
          * to operate properly. Under normal circumstances this isn't required
