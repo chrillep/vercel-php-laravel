@@ -1,9 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    ":automergeMajor",
-    ":preserveSemverRanges"
+      "config:best-practices",
+      "schedule:weekly",
+      ":dependencyDashboard"
   ],
   "labels": ["dependencies"],
   "packageRules": [
@@ -34,5 +34,6 @@
   ],
   "js": {
     "addLabels": ["js", "javascript"]
-  }
+  },
+    "timezone": "Europe/Stockholm"
 }
