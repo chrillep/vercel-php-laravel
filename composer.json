@@ -23,7 +23,7 @@
     "laravel/sail": "^1.32",
     "mockery/mockery": "^1.6",
     "nunomaduro/collision": "^7.10",
-    "pestphp/pest": "^2.35",
+    "pestphp/pest": "^3.0",
     "pestphp/pest-plugin-laravel": "^2.4",
     "spatie/laravel-ignition": "^2.8"
   },
