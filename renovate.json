@@ -1,39 +1,70 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-      "config:best-practices",
-      "schedule:weekly",
-      ":dependencyDashboard"
+    "config:best-practices",
+    "schedule:weekly",
+    ":dependencyDashboard"
   ],
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "addLabels": ["docker"]
+      "matchCategories": [
+        "js"
+      ],
+      "addLabels": [
+        "js",
+        "javascript"
+      ]
     },
     {
-      "matchManagers": ["composer"],
-      "addLabels": ["php", "composer"]
+      "matchDatasources": [
+        "docker"
+      ],
+      "addLabels": [
+        "docker"
+      ]
     },
     {
-      "matchUpdateTypes": ["major"],
-      "addLabels": ["major"]
+      "matchManagers": [
+        "composer"
+      ],
+      "addLabels": [
+        "php",
+        "composer"
+      ]
     },
     {
-      "matchUpdateTypes": ["minor"],
-      "addLabels": ["minor"]
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "addLabels": [
+        "major"
+      ]
     },
     {
-      "matchUpdateTypes": ["patch"],
-      "addLabels": ["patch"]
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "addLabels": [
+        "minor"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "addLabels": [
+        "patch"
+      ]
     },
     {
       "groupName": "Storybook Testing",
-      "matchPackagePrefixes": ["@storybook/"]
+      "matchPackageNames": [
+        "@storybook/{/,}**"
+      ]
     }
   ],
-  "js": {
-    "addLabels": ["js", "javascript"]
-  },
-    "timezone": "Europe/Stockholm"
+  "timezone": "Europe/Stockholm"
 }
